@@ -1,0 +1,8 @@
+# Description of the device
+description: Adafruit Seesaw
+
+compatible: "adafruit,seesaw"
+
+include: i2c-device.yaml
+
+# Define the required node properties

@@ -1,0 +1,7 @@
+# Create a new option in menuconfig
+config ADAFRUIT_SEESAW
+    bool "Adafruit Seesaw"
+    default n
+    depends on I2C
+    help
+        Enable the adafruit seesaw driver
