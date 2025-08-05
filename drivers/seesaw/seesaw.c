@@ -15,7 +15,7 @@ static int32_t seesaw_get_encoder_delta(const struct device *dev, uint8_t encode
     const struct seesaw_config *cfg = (const struct seesaw_config *)dev->config;
     const struct i2c_dt_spec *i2c = &cfg->i2c;
 
-    LOG_DBG("Hello from seesaw api!");
+    LOG_INF("Hello from seesaw api!");
 
     return 0;
 }
@@ -46,8 +46,8 @@ static int seesaw_init(const struct device *dev) {
 
 
 // --- DEVICETREE HANDLING ---
-static const struct seesaw_api seesaw_api_funcs {
-    .get_encoder_delta = seesaw_get_encoder_delta
+static const struct seesaw_api seesaw_api_funcs = {
+    .get_encoder_delta = seesaw_get_encoder_delta,
 };
 
 #define SEESAW_DEFINE(inst) \
