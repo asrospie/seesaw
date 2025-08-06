@@ -47,19 +47,27 @@
 #define SEESAW_ENCODER_NEOPIX_PIN 6
 // -- END ENCODER SPECIFIC DEFS
 
+// --- BEGIN MISC. DEFINITIONS ---
+#define SEESAW_INPUT 0x00
+#define SEESAW_OUTPUT 0x01
+#define SEESAW_INPUT_PULLUP 0x02
+#define SEESAW_INPUT_PULLDOWN 0x03
+// --- END MISC. DEFINITIONS ---
+
 // Defining custom Seesaw API
 struct seesaw_api {
-    // GPIO API
-    // void (*pinMode)(const struct device *dev, uint8_t pin, uint8_t mode);
-    // void (*pinModeBulk)(const struct device *dev, uint32_t pins, uint8_t mode);
-    // void (*pinWrite)(const struct device *dev, uint8_t pin, uint8_t value);
-    // int32_t (*pinRead)(const struct device *dev, uint8_t pin);
-
     // Encoder API
     // int32_t (*get_encoder_position)(const struct device *dev, uint8_t encoder);
     int (*get_encoder_delta)(const struct device *dev, uint8_t encoder, int32_t *delta);
-    // bool (*enableEncoderInterrupt)(const struct device *dev, uint8_t encoder);
-    // bool (*disableEncoderInterrupt)(const struct device *dev, uint8_t encoder);
+    int (*enable_encoder_switch)(const struct device *dev);
+    int (*get_encoder_button_status)(const struct device *dev, uint8_t *status);
+
+    // GPIO API
+    int (*set_pin_mode_bulk)(const struct device *dev, uint32_t pins_port_a, uint32_t pins_port_b, uint8_t mode);
+    int (*set_pin_mode)(const struct device *dev, uint8_t pin, uint8_t mode);
+    int (*read_gpio_port_a_bulk)(const struct device *dev, uint32_t pins, uint32_t *pin_data);
+    int (*read_gpio_port_b_bulk)(const struct device *dev, uint32_t pins, uint32_t *pin_data);
+    int (*read_gpio_pin)(const struct device *dev, uint8_t pin, uint8_t *status);
 };
 
 
