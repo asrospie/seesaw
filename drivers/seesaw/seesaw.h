@@ -41,6 +41,12 @@
 #define SEESAW_ENCODER_DELTA 0x40
 // --- END ENCODER MODULE FUNCTION ADDRESS REGISTERS ---
 
+// -- BEGIN ENCODER SPECIFIC DEFS
+#define SEESAW_ENCODER_DEFAULT_ADDR 0x36
+#define SEESAW_ENCODER_SWITCH_PIN 24
+#define SEESAW_ENCODER_NEOPIX_PIN 6
+// -- END ENCODER SPECIFIC DEFS
+
 // Defining custom Seesaw API
 struct seesaw_api {
     // GPIO API
@@ -50,8 +56,8 @@ struct seesaw_api {
     // int32_t (*pinRead)(const struct device *dev, uint8_t pin);
 
     // Encoder API
-    // int32_t (*getEncoderPostion)(const struct device *dev, uint8_t encoder);
-    int32_t (*get_encoder_delta)(const struct device *dev, uint8_t encoder, int32_t *delta);
+    // int32_t (*get_encoder_position)(const struct device *dev, uint8_t encoder);
+    int (*get_encoder_delta)(const struct device *dev, uint8_t encoder, int32_t *delta);
     // bool (*enableEncoderInterrupt)(const struct device *dev, uint8_t encoder);
     // bool (*disableEncoderInterrupt)(const struct device *dev, uint8_t encoder);
 };
